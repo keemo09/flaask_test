@@ -2,12 +2,14 @@ from flask import Flask, request
 from flask_cors import CORS
 
 
-
 '''
-at the / endpoint when you get the request with the name make another POST request 
-with a body to the other dockerized flask app t
-hat is running and add it to an existing dictionary or list there. change the functionality of this app to 
-when you get the request for the name to get it from the other app's dictionary or list.
+create a second flask app named "api.py" that is running on a different port and that is also dockerized.
+at the app.py / GET endpoint when you get a GET request with the name parameter, make a GET request to the api.py 
+that is also a dockerized flask app that is running. 
+On the GET endpoint of api.py check if there is an employee with that name on the existing dictionary of eployees that is stored there. 
+if there is return the employee else return not found.
+at the app.py / employees POST endpoint when you get a POST request with an item of an employee, check if there is an employee with that name on the existing dictionary of employees that is stored on api.py and if there is return that there is already an employee with that name, else add this record of employee to the existing dictionary of employees stored in the api.py.
+
 and for further work see a little bit about docker-compose and run all of it with docker-compose
 '''
 
@@ -18,7 +20,6 @@ CORS(app)
 @app.route("/", methods=['POST'])
 def index():
     try:
-        #get json data
         json_data = request.get_json()
         name = json_data['name']
 
